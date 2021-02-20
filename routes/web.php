@@ -11,17 +11,23 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 /*Route::get('/', function () {
-    return view('welcome');
+return view('welcome');
 });*/
 
-Route::get('/','StaticPagesController@home')->name('home');
-Route::get('/help','StaticPagesController@help')->name('help');
-Route::get('/about','StaticPagesController@about')->name('about');
+Route::get('/', 'StaticPagesController@home')->name('home');
+Route::get('/help', 'StaticPagesController@help')->name('help');
+Route::get('/about', 'StaticPagesController@about')->name('about');
 
-Route::get('signup','UsersController@create')->name('signup');
+Route::get('signup', 'UsersController@create')->name('signup');
 
-Route::resource('users','UsersController');
-Route::get('/users/{user}','UsersController@show')->name('users.show');
+//Users
+Route::resource('users', 'UsersController');
+Route::get('/users/{user}', 'UsersController@show')->name('users.show');
+
+//Sessions
+Route::get('login', 'SessionsController@create')->name('login'); //显示登陆页面
+Route::post('login', 'SessionsController@store')->name('login'); //创建新会话（登陆）
+Route::delete('logout', 'SessionsController@destroy')->name('logout'); //销毁会话（退出登录）
