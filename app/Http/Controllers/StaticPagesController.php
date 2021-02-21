@@ -18,4 +18,8 @@ class StaticPagesController extends Controller
         return view('static_pages/about');
     }
 
+    public function index(){
+        return view('welcome');
+    }
+
 }
